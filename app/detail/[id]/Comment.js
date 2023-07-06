@@ -18,8 +18,8 @@ export default function Comment(props) {
   return (
     <div>
       <div>댓글 목록</div>
-      {list.map(({ author, comment }) => (
-        <div>
+      {list.map(({ author, comment, _id }) => (
+        <div key={_id}>
           {author}: {comment}
         </div>
       ))}
