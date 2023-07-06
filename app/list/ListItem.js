@@ -22,7 +22,16 @@ export default function ListItem(props) {
           <Link href={`/edit/${_id}`}>edit</Link>
           <div
             onClick={(e) => {
-              fetch('/api/test?name=kim&age=20');
+              fetch('/api/post/delete', { method: 'DELETE', body: JSON.stringify({ _id }) }).then(() => {
+                // NOTE: query string으로 데이터 보내기, GET요청은 바디를 못쓰는데, 이렇게 url에 담아서 보내면 바디 없이도 데이터 전송이 가능하다
+                // NOTE: 단점은 유저에게 데이터 노출되므로 중요한건 보낼 수 없음(아이디비번), 그리고 데이터가 많아지면 더러움
+                // fetch('/api/test?name=kim&age=20');
+
+                e.target.parentElement.style.opacity = 0;
+                setTimeout(() => {
+                  e.target.parentElement.style.display = 'none';
+                }, 1000);
+              });
             }}
           >
             🗑️
