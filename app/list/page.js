@@ -12,8 +12,10 @@ export default async function List() {
   return (
     <div>
       {result.map(({ _id, title }) => (
-        <li>
+        <li style={{ padding: '20px', borderRadius: '10px', backgroundColor: 'pink', margin: '10px', width: '100px' }}>
           <Link href={`/detail/${_id}`}>{title}</Link>
+          <br />
+          <Link href={`/edit/${_id}`}>edit</Link>
         </li>
       ))}
     </div>

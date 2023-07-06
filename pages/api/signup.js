@@ -2,12 +2,15 @@ import { connectDB } from '@/utils/database';
 
 export default async function handler(request, response) {
   if (request.method === 'POST') {
-    const { title, content } = request.body;
+    const { id, password } = request.body;
 
-    if (title === '') return response.status(500).json('너 제목 왜 안씀');
+    const db = (await connectDB).db('forum');
+
+    if (title === '') return response.status(500).json('너 아이디 왜 안씀');
+    if (password === '') return response.status(500).json('너 비번 왜 안씀');
+    if (await db.collection('post').findOne({ id })) return response.status(500).json('너 아이디 왜 안씀');
 
     try {
-      const db = (await connectDB).db('forum');
       let collection = await db.collection('post');
 
       const result = await collection.insertOne({
