@@ -12,16 +12,16 @@ export default function ListItem(props) {
   return (
     <>
       {props.result.map(({ _id, title }) => (
-        <li style={{ padding: '20px', borderRadius: '10px', backgroundColor: 'pink', margin: '10px', width: '100px' }}>
+        <li
+          className='list-item'
+          style={{ padding: '20px', borderRadius: '10px', backgroundColor: 'pink', margin: '10px', width: '100px' }}
+        >
           <Link href={`/detail/${_id}`}>{title}</Link>
           <br />
           <Link href={`/edit/${_id}`}>edit</Link>
           <div
-            onClick={() => {
-              // NOTE: form태그는 요청 날리면 새로고침, ajax는 새로고침 없음
-              fetch('/api/post/delete', { method: 'DELETE', body: JSON.stringify({ _id }) }).then(() => {
-                console.log(123);
-              });
+            onClick={(e) => {
+              fetch('/api/test?name=kim&age=20');
             }}
           >
             🗑️
@@ -31,6 +31,18 @@ export default function ListItem(props) {
     </>
   );
 }
+
+// fetch('/api/post/delete', { method: 'DELETE', body: JSON.stringify({ _id }) }).then(() => {
+//   // NOTE: query string으로 데이터 보내기
+
+//   fetch('/api/test?name=kim&age=20');
+
+//   console.log(123);
+//   e.target.parentElement.style.opacity = 0;
+//   setTimeout(() => {
+//     e.target.parentElement.style.display = 'none';
+//   }, 1000);
+// });
 
 /**
  * NOTE: 리스트 페이지와 리스트 아이템에서 어떻게 client component를 분리하냐 에 대해서 고민해보자
