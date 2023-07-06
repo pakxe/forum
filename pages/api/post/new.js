@@ -16,7 +16,7 @@ export default async function handler(request, response) {
       });
       return response.status(200).json({ message: '게시글이 성공적으로 저장되었습니다.', postId: result.insertedId });
     } catch (e) {
-      console.log('에러나따');
+      ('에러나따');
     }
   } else return response.status(500).json('실패');
 }
